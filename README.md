@@ -19,7 +19,7 @@ Contém as informações básicas do jogo, explicando a mecânica, que se baseia
 - **|Letras de A a Z (incluindo o "ç")|** -> Letras do teclado que podem ser pressionadas durante o jogo da forca.
   
 ### -> Score
-O **SCORE** é possui três configurações: easy, medium, hard. Cada configuração se adapta a escolha de dificuldade do usuário.
+O **SCORE** possui três configurações: easy, medium, hard. Cada configuração se adapta a escolha de dificuldade do usuário.
 
 
 |                | Easy   | Medium | Hard   |
