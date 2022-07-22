@@ -15,7 +15,7 @@ var xCanvas = 1080,
     Intructions_SKIP_gif,
     Intructions_EXIT_gif,
     main_frames = [],
-    credits_frames = [], Credits_EXIT_gif = [],
+    credits_frames = [], Credits_EXIT_gif,
     win = [], lose = [], forcaFrames = [], LoseforcaFrames = [], windance;
 ////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
@@ -40,8 +40,9 @@ function preload(){
   win[2] = loadImage("game/interface/imgs_telas/game/status/wins/WINS_03.jpg");
   
   //LOSE
-  LoseforcaFrames[0] = loadImage("game/interface/imgs_telas/game/status/lose/forcaframes/crash.gif");
-  LoseforcaFrames[1] = loadImage("game/interface/imgs_telas/game/status/lose/forcaframes/LOSE.gif");
+  for(let i=0;i<=6;i++){
+	  LoseforcaFrames[i] = loadImage("game/interface/imgs_telas/game/status/lose/forcaframes/lose/Lose" + i + ".png");}
+  LoseforcaFrames[7] = loadImage("game/interface/imgs_telas/game/status/lose/forcaframes/crash.gif");
   lose[0] = loadImage("game/interface/imgs_telas/game/status/lose/GAMEOVER_01.jpg");
   lose[1] = loadImage("game/interface/imgs_telas/game/status/lose/GAMEOVER_02.jpg");
   
@@ -52,7 +53,7 @@ function preload(){
   BackgroundDificulte[3] = loadImage("game/interface/imgs_telas/game/dificulte/Dificulte_HARD.gif");
   
 //Game >> Dificuldades >> temas
-  tema[0] = loadImage("game/interface/imgs_telas/game/tema/choice_orientation.jpg");
+  tema[0] = loadImage("game/interface/imgs_telas/game/tema/choice.jpg");
   tema[1] = loadImage("game/interface/imgs_telas/game/tema/choice_math.gif");
   tema[2] = loadImage("game/interface/imgs_telas/game/tema/choice_literature.gif");
   tema[3] = loadImage("game/interface/imgs_telas/game/tema/choice_biology.jpg");
@@ -102,17 +103,16 @@ function preload(){
   Intructions_EXIT_gif = loadImage("game/interface/imgs_telas/instructions/instrucoes_exit_page.gif");
   Intructions_SKIP_gif = loadImage("game/interface/imgs_telas/instructions/instrucoes_next_page.gif");
   
-  
-//Array de frames de créditos:----------------------------------------------------------------------------------
-  Credits_EXIT_gif = loadImage("game/interface/imgs_telas/credits/repet/Tela_credits_exit.gif");
-  
+//Array de frames de abertura:----------------------------------------------------------------------------------  
   for(
   let frame_number_main_indice = 0;
   frame_number_main_indice <= 45;
   frame_number_main_indice++
   ){main_frames[frame_number_main_indice] = loadImage("game/interface/imgs_telas/main/openning/" + frame_number_main_indice + ".jpg");}
 
-//Array de frames de abertura da tela principal:-----------------------------------------------------------------
+//Gif de saída de créditos:--------------------------------------------------------------------
+ Credits_EXIT_gif = loadImage("game/interface/imgs_telas/credits/repet/credits_exit.gif");
+//Array de frames de créditos:-----------------------------------------------------------------
   for(
   let frame_number_credits_indice = 0;
   frame_number_credits_indice <= 94;
@@ -154,3 +154,6 @@ var thistheme = 0;
  STATUS ATUAL
 ===============*/
 var statusnow = 0;
+
+
+

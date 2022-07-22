@@ -2,14 +2,14 @@
 VARIÁVEIS GLOBAIS E DE ESCOPO PARA {sketch.js}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 //Variável de repetição de animação de main
-let Number_for_repetition = 0,
+let contLose = 0,
+	Number_for_repetition = 0,
     Number_for_repetition_credits_openning = 0,
     Subpage_repetition_InstructionsIndice = 0,
     Choice_DificulteMode,
     Choice_Subpages_instructions = 0,
-    Show_Right_Caracter = "";
-    youlose = false; 
-    EXIT_credits = false;
+    Show_Right_Caracter = "",
+    youlose = false;
 
 ///////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////
@@ -32,13 +32,7 @@ function draw() {
   textFont(FONTEgame); //Colocar estilo de fonte retrô 8 bit para todas as páginas.
   
   if(selec == main){
-    if(EXIT_credits === true && Number_for_repetition_credits_openning <= (BackgroundCredits.length - 1)){
-        frameRate(60);
-        image(credits_frames[Number_for_repetition_credits_openning],0,0,xCanvas, yCanvas);
-        Number_for_repetition_credits_openning++;
-    } else {
       frameRate(15);
-      EXIT_credits = false;
       if(Number_for_repetition <= 45){
         image(main_frames[Number_for_repetition],0,0,xCanvas, yCanvas); 
         Number_for_repetition++} 
@@ -47,7 +41,6 @@ function draw() {
             image(main_frames[45],0,0,xCanvas, yCanvas);
           }
       }
-    }
   } 
     
   
@@ -134,9 +127,12 @@ function draw() {
                 image(lose[statusnow],0,0,xCanvas, yCanvas);}
             
             if(youlose === false){
-              image(LoseforcaFrames[0],xCanvas*(1/3),50,xCanvas/2, yCanvas/2);
-              youlose = true;
-            } else {image(LoseforcaFrames[1],xCanvas*(1/3),80,xCanvas/2, yCanvas/2);}
+			  frameRate(7);
+              image(LoseforcaFrames[contLose],xCanvas*(1/3),80,xCanvas/2, yCanvas/2);
+			  if(contLose<6){contLose++;} else {youlose = true;}
+            } else {
+				contLose = 0;
+				image(LoseforcaFrames[7],xCanvas*(1/3),80,xCanvas/2, yCanvas/2);}
             
             textAlign(CENTER, CENTER);
             textSize(30);
@@ -165,14 +161,13 @@ function draw() {
     //Exibe layout:
     frameRate(30);
     
-    if(Number_for_repetition_credits_openning < (BackgroundCredits.length - 1)){
+    if(Number_for_repetition_credits_openning < (credits_frames.length -1)){
         image(credits_frames[Number_for_repetition_credits_openning],0,0,xCanvas, yCanvas);
         Number_for_repetition_credits_openning++;
     } else{
-        if(Number_for_repetition_credits_openning >= (BackgroundCredits.length - 1)){
-          image(credits_frames[(BackgroundCredits.length - 1)],0,0,xCanvas, yCanvas);
+        if(Number_for_repetition_credits_openning >= (credits_frames.length -1)){
+          image(credits_frames[(credits_frames.length -1)],0,0,xCanvas, yCanvas);
           image(Credits_EXIT_gif,(xCanvas*5)/6,(yCanvas*5)/6,xCanvas/6,yCanvas/6);
-          EXIT_credits = false;
         }
     }
   }
@@ -379,7 +374,6 @@ OPÇÕES DENTRO DOS CRÉDITOS
   if(selec == credits){
     if(keyCode === ESCAPE){
       selec = main;
-      EXIT_credits = true; //Booleano para marcar saída dos créditos >> [início animação saída]
       console.log(selec);
     }
   }
